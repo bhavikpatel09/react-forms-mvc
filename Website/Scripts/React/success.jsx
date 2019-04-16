@@ -2,7 +2,7 @@
     render() {
         return (
             <div>
-                <h3 className="breadcrumb">Details Successfully Saved</h3>
+                <h3 className="breadcrumb">Contact details successfully Saved.</h3>
             </div>
         );
     }

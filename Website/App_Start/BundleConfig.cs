@@ -12,6 +12,7 @@ namespace Website.App_Start
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new BabelBundle("~/bundles/main").Include(
+                            "~/Scripts/React/form-errors.jsx",
                             "~/Scripts/React/success.jsx",
                             "~/Scripts/React/contact-detail.jsx",
                             "~/Scripts/React/address-detail.jsx",

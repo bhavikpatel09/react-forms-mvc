@@ -160,6 +160,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\React\app.jsx" />
     <Content Include="Scripts\React\contact-us-form.jsx" />
+    <Content Include="Scripts\React\form-errors.jsx" />
     <Content Include="Scripts\React\name-detail.jsx" />
     <Content Include="Scripts\React\contact-detail.jsx" />
     <Content Include="Scripts\React\success.jsx" />

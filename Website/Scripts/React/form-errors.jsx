@@ -1,12 +1,12 @@
-﻿export const FormErrors = ({ formErrors }) =>
-    <div className='formErrors'>
-        {Object.keys(formErrors).map((fieldName, i) => {
-            if (formErrors[fieldName].length > 0) {
-                return (
-                    <p key={i}>{fieldName} {formErrors[fieldName]}</p>
-                )
-            } else {
-                return '';
-            }
-        })}
-    </div>
+﻿const FormErrors = ({ formErrors }) => <ul className="list-group">
+    {Object.keys(formErrors).map((fieldName, i) => {
+        if (formErrors[fieldName].length > 0) {
+            return (
+                <li className="list-group-item" key={i}>{formErrors[fieldName]}</li>
+            )
+        } else {
+            return '';
+        }
+    })}
+</ul>
+

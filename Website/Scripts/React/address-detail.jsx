@@ -2,6 +2,9 @@
     state = {
         cities: []
     }
+    errorClass(error) {
+        return (error.length === 0 ? '' : 'has-error');
+    }
     saveAndContinue = (e) => {
         e.preventDefault();
         this.props.nextStep();
@@ -66,27 +69,31 @@
             <form>
                 <h3 className="breadcrumb">Location</h3>
                 <hr />
-                <div className='form-group'>
+                <div className={`form-group
+                    ${this.errorClass(values.formErrors.street)}`}>
                     <label>Street Address</label>
                     <input placeholder='street address' className='form-control'
                         onChange={this.props.handleChange('street')}
                         defaultValue={values.street}
                     />
                 </div>
-                <div className='form-group'>
+                <div className={`form-group
+                    ${this.errorClass(values.formErrors.unit)}`}>
                     <label>Unit/Apt</label>
                     <input placeholder='unit/apt' className='form-control'
                         onChange={this.props.handleChange('unit')}
                         defaultValue={values.unit}
                     />
                 </div>
-                <div className='form-group'>
+                <div className={`form-group
+                    ${this.errorClass(values.formErrors.province)}`}>
                     <label>Provice/Territory</label>
                     <select className='form-control' value={values.province} onChange={this.props.handleChange('province')}  >
                         {provinces.map((province) => <option key={province.value} value={province.value}>{province.name}</option>)}
                     </select>
                 </div>
-                <div className='form-group'>
+                <div className={`form-group
+                    ${this.errorClass(values.formErrors.city)}`}>
                     <label>City</label>
                     <select className='form-control' value={values.city} onChange={this.props.handleChange('city')} >
                         {this.state.cities.map((city) => <option key={city} value={city}>{city}</option>)}

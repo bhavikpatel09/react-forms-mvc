@@ -44,10 +44,10 @@
         return this.state.formValid;
     }
     handleChange = input => event => {
-        debugger;
-        if (this.validateField(input, event.target.value)) {
-            this.setState({ [input]: event.target.value });
-        }
+        this.validateField(input, event.target.value);
+        //if (this.validateField(input, event.target.value)) {
+        this.setState({ [input]: event.target.value });
+        //}
     }
     validateField(fieldName, value) {
         let fieldValidationErrors = this.state.formErrors;
@@ -113,13 +113,13 @@
         }
         this.setState({
             formErrors: fieldValidationErrors,
-            emailValid : emailValid,
-            firstNameValid : firstNameValid,
-            lastNameValid :lastNameValid,
-            streetValid : streetValid,
-            unitValid : unitValid,
-            cityValid : cityValid,
-            provinceValid : provinceValid,
+            emailValid: emailValid,
+            firstNameValid: firstNameValid,
+            lastNameValid: lastNameValid,
+            streetValid: streetValid,
+            unitValid: unitValid,
+            cityValid: cityValid,
+            provinceValid: provinceValid,
         }, this.validateForm);
         return isValid;
     }
@@ -127,34 +127,54 @@
     validateForm() {
         this.setState({
             formValid: this.state.emailValid && this.state.firstNameValid
-                && this.state.lastNameValid && this.state.streetValid && this.state.unitValid && this.state.cityValid && this.state.provinceValid});
+                && this.state.lastNameValid && this.state.streetValid && this.state.unitValid && this.state.cityValid && this.state.provinceValid
+        });
     }
 
     render() {
         const { step } = this.state;
-        const { firstName, lastName, email, street, unit, city, province } = this.state;
-        const values = { firstName, lastName, email, street, unit, city, province };
+        const { firstName, lastName, email, street, unit, city, province, formErrors, allRequiredValid, firstNameValid, lastNameValid, streetValid,
+            unitValid, cityValid, provinceValid, emailValid, formValid } = this.state;
+        const values = {
+            firstName, lastName, email, street, unit, city, province, formErrors, allRequiredValid, firstNameValid, lastNameValid, streetValid,
+            unitValid, cityValid, provinceValid, emailValid, formValid
+        };
         switch (step) {
             case 1:
-                return <NameDetail
-                    nextStep={this.nextStep}
-                    handleChange={this.handleChange}
-                    values={values}
-                />
+                return <div>
+                    <div className='panel panel-default'>
+                        <FormErrors formErrors={this.state.formErrors} />
+                    </div>
+                    <NameDetail
+                        nextStep={this.nextStep}
+                        handleChange={this.handleChange}
+                        values={values}
+                    />
+                </div>
             case 2:
-                return <AddressDetail
-                    nextStep={this.nextStep}
-                    prevStep={this.prevStep}
-                    handleChange={this.handleChange}
-                    values={values}
-                />
+                return <div>
+                    <div className='panel panel-default'>
+                        <FormErrors formErrors={this.state.formErrors} />
+                    </div>
+                    <AddressDetail
+                        nextStep={this.nextStep}
+                        prevStep={this.prevStep}
+                        handleChange={this.handleChange}
+                        values={values}
+                    />
+                </div>
             case 3:
-                return <ContactDetail
-                    nextStep={this.nextStep}
-                    prevStep={this.prevStep}
-                    handleChange={this.handleChange}
-                    values={values}
-                />
+                return <div>
+                    <div className='panel panel-default'>
+                        <FormErrors formErrors={this.state.formErrors} />
+                    </div>
+                    <ContactDetail
+                        nextStep={this.nextStep}
+                        prevStep={this.prevStep}
+                        handleChange={this.handleChange}
+                        values={values}
+                    />
+                </div>
             case 4:
                 return <Success />
         }

@@ -1,5 +1,7 @@
 ﻿class NameDetail extends React.Component {
-
+    errorClass(error) {
+        return (error.length === 0 ? '' : 'has-error');
+    }
     saveAndContinue = (e) => {
         e.preventDefault();
         this.props.nextStep();
@@ -10,8 +12,9 @@
         return (
             <form>
                 <h3 className="breadcrumb">Name</h3>
-                <hr />
-                <div className='form-group'>
+                <hr />                
+                <div className={`form-group
+                    ${this.errorClass(values.formErrors.firstName)}`} >
                     <label>First Name</label>
                     <input className='form-control'
                         placeholder='First Name'
@@ -19,7 +22,8 @@
                         defaultValue={values.firstName}
                     />
                 </div>
-                <div className='form-group'>
+                <div className={`form-group
+                    ${this.errorClass(values.formErrors.lastName)}`}>
                     <label>Last Name</label>
                     <input className='form-control'
                         placeholder='Last Name'
